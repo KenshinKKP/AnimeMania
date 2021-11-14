@@ -1,6 +1,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useState } from 'react';
+
+function Category(props) {
+  const [categoryText, setCategoryText] = useState("Read More");
+  function changeCategoryText() {
+    setCategoryText(props.categoryText)
+  }
+  const categoryClassName = "rounded-full border-2 border-purple-400 p-10 w-full " + props.backgroundColor
+  return (
+    <div className={categoryClassName}>
+      <h1 className="text-3xl font-bold font-serif text-center">{props.header}</h1>
+      <button onClick={changeCategoryText}>{categoryText}</button>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -10,44 +25,6 @@ export default function Home() {
         <meta name="description" content="E-Commerce project" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Kajals World!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
 
       <main className={styles.main}>
         <nav className="bg-purple-800 shadow dark:text-indigo-900">
@@ -69,7 +46,7 @@ export default function Home() {
               hover:text-pink-500
             " href="#">Anime Mania</a>
               </div>
-              {/*<!-- Mobile menu button -->*/}
+
               <div className="flex md:hidden">
                 <button type="button" className="
               text-white
@@ -87,7 +64,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            {/*<!-- Mobile Menu open: "block", Menu closed: "hidden" -->*/}
+
             <div className="items-center md:flex">
               <div className="flex flex-col md:flex-row md:mx-6">
                 <a className="
@@ -125,7 +102,7 @@ export default function Home() {
           rounded
           shadow-lg
           mt-1
-        " style="min-width: 12rem" id="dropdown-example-1">
+        " style={{ minWidth: "12rem" }} id="dropdown-example-1">
                   <a href="#" className="
             text-sm
             py-2
@@ -187,33 +164,16 @@ export default function Home() {
                     Others
                   </a>
                 </div>
-                <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
-                <script>
-                  function openDropdown(event, dropdownID) {
-                    let element = event.target;
-                  while (element.nodeName !== "BUTTON") {
-                    element = element.parentNode;
-              }
-                  var popper = Popper.createPopper(
-                  element,
-                  document.getElementById(dropdownID),
-                  {
-                    placement: "bottom-start",
-                }
-                  );
-                  document.getElementById(dropdownID).classList.toggle("hidden");
-                  document.getElementById(dropdownID).classList.toggle("block");
-            }
-                </script>
-                <a className="
-              my-1
-              font-bold
-              text-white
-              text-xl
-              dark:text-white
-              hover:text-pink-500
-              dark:hover:text-indigo-400
-              md:mx-4 md:my-0
+
+                < a className="
+                my-1
+                font-bold
+                text-white
+                text-xl
+                dark:text-white
+                hover:text-pink-500
+                dark:hover:text-indigo-400
+                md:mx-4 md:my-0
             " href="#">Contact</a>
                 <a className="
               my-1
@@ -271,46 +231,14 @@ export default function Home() {
             </div>
           </image>
         </div>
-        <div className="rounded-full space-y-8 h-full justify-center p-20">
-          <div id="Figurines" onclick="changeColor('text-indigo-400', this);"
-            className="rounded-full border-2 border-purple-400 p-10">
-            <h1 className="text-3xl font-bold font-serif text-center">Figurines</h1>
-            <button onclick="changeText(this.parentNode.id)">Read More</button>
-          </div>
-          {/*<!--document.getElementById("Figurines").innerHTML = "The world of figurines! Here you will find figurines from every genre. Cant find what you are looking for? Drop us an email and let us do the hunting for you!"; -->*/}
-
-          <div id="Manga" onclick="changeColor('text-black', this.id);" class="rounded-full bg-indigo-400 p-10">
-            <h1 className="text-3xl font-bold font-serif text-center">Manga</h1>
-            <button onclick="changeText(this.parentNode.id)">Read More</button>
-          </div>
-          {/*<!-- document.getElementById("Manga").innerHTML = "Prefer to hold a book in hand rather than stare at screens to read? Fret not! We got you covered! Browse our range of mangas to get your fix!"; -->*/}
-
-          <div id="Gifts" onclick="changeColor('text-indigo-400', this.id);"
-            className="rounded-full border-2 border-purple-400 p-10">
-            <h1 class="text-3xl font-bold font-serif text-center">Gifts</h1>
-            Don't we know of someone whose into Anime or loves collectables from Harry Potter or the MCU series? This
-            festive season, give them a reason to smile!
-          </div>
-          <div id="Others" onclick="changeColor('text-yellow-500', this.id);" class="rounded-full bg-indigo-400 p-10">
-            <h1 className="text-3xl font-bold font-mono text-center">Others</h1>
-            Now that the world is opening up and networking sessions might just become an "in-thing" again, reach out to us
-            to make the networking a more entertaining and enjoyable experience.
-          </div>
+        <div className="rounded-full space-y-8 h-full justify-center p-20 w-full">
+          <Category header="Figurines" backgroundColor="bg-white" categoryText="The world of figurines! Here you will find figurines from every genre. Cant find what you are looking for? Drop us an email and let us do the hunting for you!" />
+          <Category header="Manga" backgroundColor="bg-indigo-400" categoryText="Prefer to hold a book in hand rather than stare at screens to read? Fret not! We got you covered! Browse our range of mangas to get your fix!" />
+          <Category header="Gifting" backgroundColor="bg-white" categoryText="Don't we know of someone whose into Anime or loves collectables from Harry Potter or the MCU series? This festive season, give them a reason to smile!" />
+          <Category header="Others" backgroundColor="bg-indigo-400" categoryText="Now that the world is opening up and networking sessions might just become an in-thing again, reach out to us to make the networking a more entertaining and enjoyable experience." />
         </div>
-        {/*<!-- Required font awesome -->*/}
       </main >
-      {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
+
       < footer className="bg-purple-800 shadow dark:text-indigo-900" >
         <div className="
     container
