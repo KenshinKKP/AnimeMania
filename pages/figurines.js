@@ -62,6 +62,10 @@ export default function Figurines() {
           alt="Figurinesbanner"
         />
 
+        <h1 className="rounded-full border-2 border-purple-400 text-5xl font-bold font-serif italic text-center">
+          Figurines
+        </h1>
+
         <div
           class="
           container
