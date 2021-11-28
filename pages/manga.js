@@ -9,23 +9,24 @@ import PotterManga2 from "../public/PotterManga2.jpg";
 import MarvelManga1 from "../public/MarvelManga1.jpg";
 import MarvelManga2 from "../public/MarvelManga2.jpg";
 import DisneyManga1 from "../public/DisneyManga1.jpg";
-import DisneyManga3 from "../public/DIsneyManga3.jpg";
+import DisneyManga2 from "../public/DisneyManga2.jpg";
+import DisneyManga3 from "../public/DisneyManga3.jpg";
 import styles from "../styles/Home.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 function MangaProduct(props) {
+  const imageComponents = props.images.map(function (image) {
+    return <Image src={image.src} alt={image.name} />;
+  });
   return (
     <div className={props.direction}>
-      <div className="w-auto p-10 flex flex-row">
-        <Image src={props.image} alt={props.imageName} />
-        <Image src={props.image2} alt={props.imageName2} />
-      </div>
-      <div className="border-dashed w-auto border-black border-2 p-10">
+      <div className="w-auto p-10 flex flex-row flex-1">{imageComponents}</div>
+      <div className="border-dashed w-auto border-black border-2 p-10 flex-1">
         <h1 className="text-2xl font-mono text-center">{props.header}</h1>
         <div> {props.productText} </div>
         <div className="flex justify-center items-center">
-          <button className="text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800">
+          <button className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800">
             ADD TO CART
           </button>
         </div>
@@ -45,20 +46,22 @@ export default function Manga() {
 
       <main className={styles.main}>
         <Header />
-
-        <Image
-          width="2000"
-          height="250"
-          src="/mangabanner.jpg"
-          alt="mangabanner"
-        />
-
+        <div
+          className="pt-2"
+          style={{ position: "relative", width: "2000px", height: "450px" }}
+        >
+          <Image
+            src="/mangabanner.jpg"
+            alt="mangabanner"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
         <div className="rounded-full space-y-6 space-x-4 justify-center border-2 border-black p-10">
           <h1 className="text-3xl font-bold font-serif text-center">
             Manga and Book Sets
           </h1>
         </div>
-
         <div
           className="
           container
@@ -74,7 +77,7 @@ export default function Manga() {
           rounded-xl
         "
         >
-          <div className="mt-20 italic text-indigo-600 text-md text-justify justify-content: center">
+          <div className=" vertical-align: middle mt-20 italic text-indigo-600 text-md text-justify justify-content: center">
             All those who watch anime - MUST MUST MUST have a set (or two) of
             mangas in their bookshelf/rack. Anime and manga have long been at
             the heart of Japanese culture and tradition, with a steady increase
@@ -91,14 +94,19 @@ export default function Manga() {
             kids.
           </div>
         </div>
-
         <div className="w-auto space-y-6 space-x-4">
           <MangaProduct
             direction="flex flex-row"
-            image={NarutoManga1}
-            imageName="NarutoManga1"
-            image2={NarutoManga2}
-            imageName2="NarutoManga2"
+            images={[
+              {
+                name: "NarutoManga1",
+                src: NarutoManga1,
+              },
+              {
+                name: "NarutoManga2",
+                src: NarutoManga2,
+              },
+            ]}
             header="NARUTO MANGA"
             productText="Naruto (Japanese: NARUTOナルト) is a Japanese manga series written
             and illustrated by Masashi Kishimoto. It tells the story of Naruto
@@ -114,11 +122,17 @@ export default function Manga() {
           />
 
           <MangaProduct
-            directio="flex flex-row-reverse"
-            image={KenshinManga1}
-            imageName="KenshinManga1"
-            image2={KenshinManga2}
-            imageName2="KenshinManga2"
+            direction="flex flex-row-reverse"
+            images={[
+              {
+                name: "NarutoManga1",
+                src: NarutoManga1,
+              },
+              {
+                name: "NarutoManga2",
+                src: NarutoManga2,
+              },
+            ]}
             header="SAMURAI X (RUROUNI KENSHIN) MANGA"
             productText="Rurouni Kenshin: Meiji Swordsman Romantic Story (Japanese:
             るろうに剣心 -明治剣客浪漫譚-, Hepburn: Rurōni Kenshin -Meiji
@@ -140,10 +154,16 @@ export default function Manga() {
           />
           <MangaProduct
             direction="flex flex-row"
-            image={MarvelManga1}
-            imageName="MarvelManga1"
-            image2={MarvelManga2}
-            imageName2="MarvelManga2"
+            images={[
+              {
+                name: "NarutoManga1",
+                src: NarutoManga1,
+              },
+              {
+                name: "NarutoManga2",
+                src: NarutoManga2,
+              },
+            ]}
             header="MARVEL AVENGERS COMIC BOOK SET"
             productText="The Marvel era began in 1961, the year that the company launched The
             Fantastic Four and other superhero titles created by Stan Lee, Jack
@@ -159,10 +179,16 @@ export default function Manga() {
 
           <MangaProduct
             direction="flex flex-row-reverse"
-            image={PotterManga1}
-            imageName="PotterManga1"
-            image2={PotterManga2}
-            imageName2="PotterManga2"
+            images={[
+              {
+                name: "NarutoManga1",
+                src: NarutoManga1,
+              },
+              {
+                name: "NarutoManga2",
+                src: NarutoManga2,
+              },
+            ]}
             header="HARRY POTTER BOOK SET"
             productText="Escape to Hogwarts with the unmissable series that has sparked a
             lifelong reading journey for children and families all over the
@@ -184,10 +210,20 @@ export default function Manga() {
 
           <MangaProduct
             direction="flex flex-row"
-            image={DisneyManga1}
-            imageName="DisneyManga1"
-            image2={DisneyManga3}
-            imageName2="DisneyManga3"
+            images={[
+              {
+                name: "DisneyManga1",
+                src: DisneyManga1,
+              },
+              {
+                name: "DisneyManga2",
+                src: DisneyManga2,
+              },
+              {
+                name: "DisneyManga3",
+                src: DisneyManga3,
+              },
+            ]}
             header="DINESY PRINCESSES BOOK COLLECTION"
             productText="This Disney Princess Little Golden Book Set collects 13
             magically-illustrated retellings of your favorite stories! Perfect
