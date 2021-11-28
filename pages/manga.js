@@ -14,6 +14,8 @@ import DisneyManga3 from "../public/DisneyManga3.jpg";
 import styles from "../styles/Home.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useContext } from "react";
+import { CartContext } from "../context/cart";
 
 function MangaProduct(props) {
   const imageComponents = props.images.map(function (image) {
@@ -26,7 +28,12 @@ function MangaProduct(props) {
         <h1 className="text-2xl font-mono text-center">{props.header}</h1>
         <div> {props.productText} </div>
         <div className="flex justify-center items-center">
-          <button className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800">
+          <button
+            onClick={function () {
+              props.addToCart();
+            }}
+            className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
+          >
             ADD TO CART
           </button>
         </div>
@@ -36,6 +43,7 @@ function MangaProduct(props) {
 }
 
 export default function Manga() {
+  const { addToCart } = useContext(CartContext);
   return (
     <div className={styles.container}>
       <Head>
@@ -119,6 +127,7 @@ export default function Manga() {
             Naruto (1997). Naruto was serialized in Shueisha's magazine, Weekly
             Shōnen Jump from 1999 to 2014, and released in tankōbon (book) form
             in 72 volumes."
+            addToCart={addToCart}
           />
 
           <MangaProduct
@@ -151,6 +160,7 @@ export default function Manga() {
             magazine from April 1994 to September 1999. The complete work
             consists of 28 tankōbon volumes, while years later it was reprinted
             into twenty-two kanzenban volumes."
+            addToCart={addToCart}
           />
           <MangaProduct
             direction="flex flex-row"
@@ -175,6 +185,7 @@ export default function Manga() {
             (Anthony Stark), Thor, and the Wasp (Janet van Dyne) and brought the
             title's first major milestone: the revival and return of Captain
             America (Steve Rogers)"
+            addToCart={addToCart}
           />
 
           <MangaProduct
@@ -206,6 +217,7 @@ export default function Manga() {
             must-have for every child at the start of the most magical reading
             adventure. These are books to be treasured and read time and time
             again, the greatest children's story of all time."
+            addToCart={addToCart}
           />
 
           <MangaProduct
@@ -231,6 +243,7 @@ export default function Manga() {
             titles: Tangled, Brave, The Princess and the Frog, The Little
             Mermaid, Beauty and the Beast, Cinderella, Frozen I, Frozen II,
             Moana, Sleeping Beauty, Snow White, Mulan, and Aladdin."
+            addToCart={addToCart}
           />
         </div>
       </main>
