@@ -30,7 +30,7 @@ function MangaProduct(props) {
         <div className="flex justify-center items-center">
           <button
             onClick={function () {
-              props.addToCart();
+              props.addToCart(props.header);
             }}
             className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
           >
@@ -43,7 +43,7 @@ function MangaProduct(props) {
 }
 
 export default function Manga() {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartItems } = useContext(CartContext);
   return (
     <div className={styles.container}>
       <Head>
@@ -70,6 +70,8 @@ export default function Manga() {
             Manga and Book Sets
           </h1>
         </div>
+        {cartItems}
+
         <div
           className="
           container
