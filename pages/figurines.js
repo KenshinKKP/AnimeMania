@@ -22,6 +22,8 @@ import Ariel2 from "../public/Ariel2.jpg";
 import styles from "../styles/Home.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useContext } from "react";
+import { CartContext } from "../context/cart";
 
 function FigurinesProduct(props) {
   return (
@@ -33,8 +35,14 @@ function FigurinesProduct(props) {
       <div className="border-dashed w-auto border-black border-2 p-10">
         <h1 className="text-2xl font-mono text-center">{props.header}</h1>
         <div> {props.productText} </div>
+        <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
-          <button className="text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800">
+          <button
+            onClick={function () {
+              props.addToCart(props.header, props.productPrice);
+            }}
+            className="text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
+          >
             ADD TO CART
           </button>
         </div>
@@ -44,6 +52,7 @@ function FigurinesProduct(props) {
 }
 
 export default function Figurines() {
+  const { addToCart, cartItems } = useContext(CartContext);
   return (
     <div className={styles.container}>
       <Head>
@@ -65,6 +74,7 @@ export default function Figurines() {
         <h1 className="rounded-full border-2 border-purple-400 text-5xl font-bold font-serif italic text-center">
           Figurines
         </h1>
+        {cartItems}
 
         <div
           class="
@@ -99,8 +109,10 @@ export default function Figurines() {
             imageName2="Naruto3"
             header="NARUTO - NARUTO UZUMAKI"
             productText={
-              'From the popular anime series "Naruto Shippuden" comes a rerelease of the Nendoroid of the main character, Naruto Uzumaki! The set box includes, full 1/9 scale figurine with interchangable face plates, weapons and an illustrated sheet. Price: SGD 69.90'
+              "From the popular anime series 'Naruto Shippuden' comes a rerelease of the Nendoroid of the main character, Naruto Uzumaki! The set box includes, full 1/9 scale figurine with interchangable face plates, weapons and an illustrated sheet."
             }
+            productPrice="SGD 69.90"
+            addToCart={addToCart}
           />
 
           <FigurinesProduct
@@ -115,9 +127,9 @@ export default function Figurines() {
                         when he activates his Byakugan and a composed smiling expression!
 
                         The gifting box includes, full 1/9 scale figurine with interchangable face
-                        plates, weapons and an illustrated sheet.
-
-                        Price: SGD 69.90`}
+                        plates, weapons and an illustrated sheet.`}
+            productPrice="SGD 69.90"
+            addToCart={addToCart}
           />
 
           <FigurinesProduct
@@ -133,7 +145,9 @@ export default function Figurines() {
             parts include his kunai and Rasengan.By combining his parts, you can
             create action-packed poses from the show! The gifting box includes,
             full 1/9 scale figurine with interchangable face plates, weapons and
-            an illustrated sheet. Price: SGD 69.90`}
+            an illustrated sheet.`}
+            productPrice="SGD 69.90"
+            addToCart={addToCart}
           />
 
           <h1 className="rounded-full border-2 border-purple-400 text-5xl font-bold font-serif italic text-center">
@@ -153,8 +167,9 @@ export default function Figurines() {
             and comes with two face plates, a standard expression and the
             serious expression for when he's chasing the Golden Snitch. The
             gifting box includes a full 1/9 scale figurine with the "Nimbus
-            2000", a goal hoop and of course the Golden Snitch! 
-            Price: SGD 59.90`}
+            2000", a goal hoop and of course the Golden Snitch!`}
+            productPrice="SGD 59.90"
+            addToCart={addToCart}
           />
           <FigurinesProduct
             direction="flex flex-row"
@@ -167,7 +182,9 @@ export default function Figurines() {
             Albus Dumbledore! He comes with two face plates—a standard expression and a gentle smiling expression.
        
             The gifting box includes a full 1/9 scale figurine, Fawkes, Dumbledore's loyal pet phoenix, as well as
-            Fawkes' perch and the legendary Elder Wand. Price: SGD 69.90`}
+            Fawkes' perch and the legendary Elder Wand.`}
+            productPrice="SGD 59.90"
+            addToCart={addToCart}
           />
 
           <FigurinesProduct
@@ -182,8 +199,9 @@ export default function Figurines() {
             spells and a nervous expression from the famous Sorting Hat scene.
             
             The gifting box includes a full 1/9 scale figurine, his wand, his broom "Firebolt", Hedwig and the
-            Sorting Hat are included along with special body parts to pose him riding his broom!.
-            Price: SGD 59.90`}
+            Sorting Hat are included along with special body parts to pose him riding his broom!`}
+            productPrice="SGD 59.90"
+            addToCart={addToCart}
           />
 
           <h1 className="rounded-full border-2 border-purple-400 text-5xl font-bold font-serif italic text-center">
@@ -203,8 +221,9 @@ export default function Figurines() {
             Optional parts include two different face plates, both Mrs. Potts
             and Chip, as well as the enchanted rose and the magic mirror that
             showed the Beast. A clear sheet featuring the Beast is also
-            included together with a stand to display beside her. Price: SGD
-            49.90`}
+            included together with a stand to display beside her.`}
+            productPrice="SGD 49.90"
+            addToCart={addToCart}
           />
 
           <FigurinesProduct
@@ -226,7 +245,9 @@ export default function Figurines() {
             moving parts allowing her hair to be placed in different positions
             to recreate your favorite scenes from the movie! In addition, her
             best friend Pascal is also included to display by her side, so be
-            sure to add the two to your collection! Price: SGD 49.90`}
+            sure to add the two to your collection!`}
+            productPrice="SGD 49.90"
+            addToCart={addToCart}
           />
 
           <FigurinesProduct
@@ -245,7 +266,9 @@ export default function Figurines() {
             are also articulated allowing you to display her in a range of
             poses to swimming fast to a more gentle movement. Alternate parts
             to display her sitting are also included, which are perfect to
-            pose her sitting and chatting with friends! Price: SGD 49.90`}
+            pose her sitting and chatting with friends!`}
+            productPrice="SGD 49.90"
+            addToCart={addToCart}
           />
         </div>
       </main>

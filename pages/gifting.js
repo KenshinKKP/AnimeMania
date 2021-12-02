@@ -135,6 +135,7 @@ export default function Gifting() {
             Mulan, Tiana, and Aurora Soft padded case with shimmering fabric
             with Faceted jewel accents Two separate compartments with zip
             closure Golden metal zip pull with faceted jewel accent."
+            addToCart={addToCart}
           />
           <div className="border-dashed w-auto border-black border-2 p-10">
             <h1 className="text-2xl font-mono text-center">
@@ -149,6 +150,7 @@ export default function Gifting() {
             <button className="text-md font-mono text-center italic font-bold justify-center w-3/12 ring ring-black ring-offset-0">
               ADD TO CART
             </button>
+            addToCart={addToCart}
           </div>
           <div className="w-auto p-10">
             <img src="DisneyGift2.jpg" alt="DisneyGift2"></img>

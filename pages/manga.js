@@ -27,10 +27,15 @@ function MangaProduct(props) {
       <div className="border-dashed w-auto border-black border-2 p-10 flex-1">
         <h1 className="text-2xl font-mono text-center">{props.header}</h1>
         <div> {props.productText} </div>
+        <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
           <button
             onClick={function () {
-              props.addToCart(props.header);
+              props.addToCart(
+                props.header,
+                { newCartItem: props.productPrice },
+                { newCartItem: imageComponents }
+              );
             }}
             className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
           >
@@ -129,6 +134,7 @@ export default function Manga() {
             Naruto (1997). Naruto was serialized in Shueisha's magazine, Weekly
             Shōnen Jump from 1999 to 2014, and released in tankōbon (book) form
             in 72 volumes."
+            productPrice="SGD 109.00"
             addToCart={addToCart}
           />
 
@@ -136,12 +142,12 @@ export default function Manga() {
             direction="flex flex-row-reverse"
             images={[
               {
-                name: "NarutoManga1",
-                src: NarutoManga1,
+                name: "KenshinManga1",
+                src: KenshinManga1,
               },
               {
-                name: "NarutoManga2",
-                src: NarutoManga2,
+                name: "KenshinManga2",
+                src: KenshinManga2,
               },
             ]}
             header="SAMURAI X (RUROUNI KENSHIN) MANGA"
@@ -162,18 +168,19 @@ export default function Manga() {
             magazine from April 1994 to September 1999. The complete work
             consists of 28 tankōbon volumes, while years later it was reprinted
             into twenty-two kanzenban volumes."
+            productPrice="SGD 69.00"
             addToCart={addToCart}
           />
           <MangaProduct
             direction="flex flex-row"
             images={[
               {
-                name: "NarutoManga1",
-                src: NarutoManga1,
+                name: "MarvelManga1",
+                src: MarvelManga1,
               },
               {
-                name: "NarutoManga2",
-                src: NarutoManga2,
+                name: "MarvelManga2",
+                src: MarvelManga2,
               },
             ]}
             header="MARVEL AVENGERS COMIC BOOK SET"
@@ -187,6 +194,7 @@ export default function Manga() {
             (Anthony Stark), Thor, and the Wasp (Janet van Dyne) and brought the
             title's first major milestone: the revival and return of Captain
             America (Steve Rogers)"
+            productPrice="SGD 79.00"
             addToCart={addToCart}
           />
 
@@ -194,12 +202,12 @@ export default function Manga() {
             direction="flex flex-row-reverse"
             images={[
               {
-                name: "NarutoManga1",
-                src: NarutoManga1,
+                name: "PotterManga1",
+                src: PotterManga1,
               },
               {
-                name: "NarutoManga2",
-                src: NarutoManga2,
+                name: "PotterManga2",
+                src: PotterManga2,
               },
             ]}
             header="HARRY POTTER BOOK SET"
@@ -219,6 +227,7 @@ export default function Manga() {
             must-have for every child at the start of the most magical reading
             adventure. These are books to be treasured and read time and time
             again, the greatest children's story of all time."
+            productPrice="SGD 59.00"
             addToCart={addToCart}
           />
 
@@ -245,6 +254,7 @@ export default function Manga() {
             titles: Tangled, Brave, The Princess and the Frog, The Little
             Mermaid, Beauty and the Beast, Cinderella, Frozen I, Frozen II,
             Moana, Sleeping Beauty, Snow White, Mulan, and Aladdin."
+            productPrice="SGD 49.00"
             addToCart={addToCart}
           />
         </div>
