@@ -38,8 +38,12 @@ function GiftingProduct(props) {
         <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
           <button
-            onClick={function () {
-              props.addToCart(props.header);
+            onClick={function (title, price, imageSrc) {
+              props.addToCart(
+                (title = props.header),
+                (price = props.productPrice),
+                (imageSrc = imageComponents)
+              );
             }}
             className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
           >
@@ -364,7 +368,7 @@ export default function Gifting() {
           />
         </div>
       </main>
-
+      {cartItems}
       <Footer />
     </div>
   );

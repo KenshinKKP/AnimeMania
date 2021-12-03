@@ -30,11 +30,11 @@ function MangaProduct(props) {
         <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
           <button
-            onClick={function () {
+            onClick={function (title, price, imageSrc) {
               props.addToCart(
-                props.header,
-                { newCartItem: props.productPrice },
-                { newCartItem: imageComponents }
+                (title = props.header),
+                (price = props.productPrice),
+                (imageSrc = imageComponents)
               );
             }}
             className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
@@ -75,7 +75,6 @@ export default function Manga() {
             Manga and Book Sets
           </h1>
         </div>
-        {cartItems}
 
         <div
           className="
@@ -259,7 +258,7 @@ export default function Manga() {
           />
         </div>
       </main>
-
+      {cartItems}
       <Footer />
     </div>
   );

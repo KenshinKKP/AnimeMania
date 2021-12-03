@@ -26,20 +26,24 @@ import { useContext } from "react";
 import { CartContext } from "../context/cart";
 
 function FigurinesProduct(props) {
+  const imageComponents = props.images.map(function (image) {
+    return <Image src={image.src} alt={image.name} />;
+  });
   return (
     <div className={props.direction}>
-      <div className="w-auto p-10 flex flex-row">
-        <Image src={props.image} alt={props.imageName} />
-        <Image src={props.image2} alt={props.imageName2} />
-      </div>
+      <div className="w-auto p-10 flex flex-row">{imageComponents}</div>
       <div className="border-dashed w-auto border-black border-2 p-10">
         <h1 className="text-2xl font-mono text-center">{props.header}</h1>
         <div> {props.productText} </div>
         <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
           <button
-            onClick={function () {
-              props.addToCart(props.header, props.productPrice);
+            onClick={function (title, price, imageSrc) {
+              props.addToCart(
+                (title = props.header),
+                (price = props.productPrice),
+                (imageSrc = imageComponents)
+              );
             }}
             className="text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
           >
@@ -103,10 +107,16 @@ export default function Figurines() {
         <div className="w-auto space-y-6 space-x-4">
           <FigurinesProduct
             direction="flex flex-row"
-            image={Naruto2}
-            imageName="Naruto2"
-            image2={Naruto3}
-            imageName2="Naruto3"
+            images={[
+              {
+                name: "Naruto2",
+                src: Naruto2,
+              },
+              {
+                name: "Naruto3",
+                src: Naruto3,
+              },
+            ]}
             header="NARUTO - NARUTO UZUMAKI"
             productText={
               "From the popular anime series 'Naruto Shippuden' comes a rerelease of the Nendoroid of the main character, Naruto Uzumaki! The set box includes, full 1/9 scale figurine with interchangable face plates, weapons and an illustrated sheet."
@@ -117,10 +127,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row-reverse"
-            image={Neji1}
-            imageName="Neji1"
-            image2={Neji2}
-            imageName2="Neji2"
+            images={[
+              {
+                name: "Neji2",
+                src: Neji2,
+              },
+              {
+                name: "Neji1",
+                src: Neji1,
+              },
+            ]}
             header="NARUTO - NEJI HYUGA"
             productText={`From the popular anime series "Naruto Shippuden" comes a fully articulated Nendoroid action figure of
                         Neji Hyuga!He comes with three face plates including a standard expression, a combat expression from
@@ -134,10 +150,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row"
-            image={Minato1}
-            imageName="Minato1"
-            image2={Minato2}
-            imageName2="Minato2"
+            images={[
+              {
+                name: "Minato1",
+                src: Minato1,
+              },
+              {
+                name: "Minato2",
+                src: Minato2,
+              },
+            ]}
             header="NARUTO - MINATO NAMIKAZE"
             productText={`From the popular anime series "Naruto Shippuden" comes Minato
             Namikaze! He comes with three face plates including a standard
@@ -156,10 +178,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row-reverse"
-            image={HP1}
-            imageName="HP1"
-            image2={HP2}
-            imageName2="HP2"
+            images={[
+              {
+                name: "HP1",
+                src: HP1,
+              },
+              {
+                name: "HP2",
+                src: HP2,
+              },
+            ]}
             header="HARRY POTTER - HARRY POTTER QUIDDICH VERSION"
             productText={`From the internationally popular "Harry Potter" film series comes
             a Nendoroid of Harry Potter in his Quidditch uniform! The
@@ -173,10 +201,16 @@ export default function Figurines() {
           />
           <FigurinesProduct
             direction="flex flex-row"
-            image={AD1}
-            imageName="AD1"
-            image2={AD2}
-            imageName2="AD2"
+            images={[
+              {
+                name: "AD1",
+                src: AD1,
+              },
+              {
+                name: "AD2",
+                src: AD2,
+              },
+            ]}
             header="HARRY POTTER - ALBUS"
             productText={`From the internationally popular "Harry Potter" film series comes a Nendoroid of Hogwarts Headmaster,
             Albus Dumbledore! He comes with two face plates—a standard expression and a gentle smiling expression.
@@ -189,10 +223,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row-reverse"
-            image={NHP1}
-            imageName="NHP1"
-            image2={NHP2}
-            imageName2="NHP2"
+            images={[
+              {
+                name: "NHP1",
+                src: NHP1,
+              },
+              {
+                name: "NHP2",
+                src: NHP2,
+              },
+            ]}
             header="HARRY POTTER - HARRY POTTER"
             productText={`From the popular film series "Harry Potter" comes a Nendoroid action figure of Harry Potter! He comes
             with three face plates including his standard expression, a serious expression for when he's casting
@@ -210,10 +250,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row"
-            image={Belle1}
-            imageName="Belle1"
-            image2={Belle2}
-            imageName2="Belle2"
+            images={[
+              {
+                name: "Belle1",
+                src: Belle1,
+              },
+              {
+                name: "Belle2",
+                src: Belle2,
+              },
+            ]}
             header="DISNEY PRINCESS - BELLE"
             productText={`From Disney's animated feature film "Beauty and the Beast" comes
             Belle! She comes with two different face plates that both capture
@@ -228,10 +274,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row-reverse"
-            image={Rapunzel1}
-            imageName="Rapunzel1"
-            image2={Rapunzel2}
-            imageName2="Rapunzel2"
+            images={[
+              {
+                name: "Rapunzel1",
+                src: Rapunzel1,
+              },
+              {
+                name: "Rapunzel2",
+                src: Rapunzel2,
+              },
+            ]}
             header="DISNEY PRINCESS - RAPUNZEL"
             productText={`From the movie "Tangled" comes Rapunzel! She comes with three face
             plates including a cheerful smile, a surprised expression with her
@@ -252,10 +304,16 @@ export default function Figurines() {
 
           <FigurinesProduct
             direction="flex flex-row"
-            image={Ariel1}
-            imageName="Ariel1"
-            image2={Ariel2}
-            imageName2="Ariel2"
+            images={[
+              {
+                name: "Ariel1",
+                src: Ariel1,
+              },
+              {
+                name: "Ariel2",
+                src: Ariel2,
+              },
+            ]}
             header="DISNEY PRINCESS - ARIEL"
             productText={`From the popular movie "The Little Mermaid" comes Ariel! She comes
             with three face plates including a standard smile, a determined
