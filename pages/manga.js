@@ -17,6 +17,21 @@ import Footer from "../components/Footer";
 import { useContext } from "react";
 import { CartContext } from "../context/cart";
 
+function CartItem(props) {
+  return (
+    <div className="flex flex-row w-auto p-10 space-y-6 space-x-4">
+      <Image
+        src={props.image.src}
+        alt={props.image.name}
+        width="100"
+        height="150"
+      ></Image>
+      <h1 className="text-xl font-serif text-center">{props.title}</h1>
+      <div className="text-xl font-serif text-center">{props.price}</div>
+    </div>
+  );
+}
+
 function MangaProduct(props) {
   const imageComponents = props.images.map(function (image) {
     return <Image src={image.src} alt={image.name} />;
@@ -30,12 +45,13 @@ function MangaProduct(props) {
         <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
           <button
-            onClick={function (title, price, imageSrc) {
-              props.addToCart(
-                (title = props.header),
-                (price = props.productPrice),
-                (imageSrc = imageComponents)
-              );
+            onClick={function () {
+              const item = {
+                title: props.header,
+                price: props.productPrice,
+                image: props.images[0],
+              };
+              props.addToCart(item);
             }}
             className="vertical-align: bottom text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
           >
@@ -49,6 +65,16 @@ function MangaProduct(props) {
 
 export default function Manga() {
   const { addToCart, cartItems } = useContext(CartContext);
+  const cartItemComponents = cartItems.map(function (props) {
+    return (
+      <CartItem
+        image={props.image.src}
+        title={props.title}
+        price={props.price}
+      />
+    );
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -59,22 +85,19 @@ export default function Manga() {
 
       <main className={styles.main}>
         <Header />
-        <div
-          className="pt-2"
-          style={{ position: "relative", width: "2000px", height: "450px" }}
-        >
-          <Image
-            src="/mangabanner.jpg"
-            alt="mangabanner"
-            layout="fill"
-            objectFit="cover"
-          />
-        </div>
-        <div className="rounded-full space-y-6 space-x-4 justify-center border-2 border-black p-10">
-          <h1 className="text-3xl font-bold font-serif text-center">
-            Manga and Book Sets
-          </h1>
-        </div>
+
+        <Image
+          src="/mangabanner.jpg"
+          alt="mangabanner"
+          width="2000"
+          height="250"
+        />
+
+        <h1 className="rounded-full border-2 border-black text-3xl font-bold font-serif text-center w-auto p-10">
+          Manga and Book Sets
+        </h1>
+
+        <div className="basis-1"> {cartItemComponents} </div>
 
         <div
           className="
@@ -258,7 +281,7 @@ export default function Manga() {
           />
         </div>
       </main>
-      {cartItems}
+
       <Footer />
     </div>
   );

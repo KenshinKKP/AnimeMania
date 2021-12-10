@@ -25,6 +25,21 @@ import Footer from "../components/Footer";
 import { useContext } from "react";
 import { CartContext } from "../context/cart";
 
+function CartItem(props) {
+  return (
+    <div className="flex flex-row w-auto p-10 space-y-6 space-x-4">
+      <Image
+        src={props.image.src}
+        alt={props.image.name}
+        width="100"
+        height="150"
+      ></Image>
+      <h1 className="text-xl font-serif text-center">{props.title}</h1>
+      <div className="text-xl font-serif text-center">{props.price}</div>
+    </div>
+  );
+}
+
 function FigurinesProduct(props) {
   const imageComponents = props.images.map(function (image) {
     return <Image src={image.src} alt={image.name} />;
@@ -38,12 +53,13 @@ function FigurinesProduct(props) {
         <div> {props.productPrice} </div>
         <div className="flex justify-center items-center">
           <button
-            onClick={function (title, price, imageSrc) {
-              props.addToCart(
-                (title = props.header),
-                (price = props.productPrice),
-                (imageSrc = imageComponents)
-              );
+            onClick={function () {
+              const item = {
+                title: props.header,
+                price: props.productPrice,
+                image: props.images[0],
+              };
+              props.addToCart(item);
             }}
             className="text-xl font-mono text-center italic font-bold justify-center w-3/12 bg-indigo-300 border-2 hover:bg-indigo-800"
           >
@@ -57,6 +73,16 @@ function FigurinesProduct(props) {
 
 export default function Figurines() {
   const { addToCart, cartItems } = useContext(CartContext);
+  const cartItemComponents = cartItems.map(function (props) {
+    return (
+      <CartItem
+        image={props.image.src}
+        title={props.title}
+        price={props.price}
+      />
+    );
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -75,10 +101,27 @@ export default function Figurines() {
           alt="Figurinesbanner"
         />
 
-        <h1 className="rounded-full border-2 border-purple-400 text-5xl font-bold font-serif italic text-center">
+        <h1 className="rounded-full border-2 border-black text-3xl font-bold font-serif text-center w-auto p-10">
           Figurines
         </h1>
-        {cartItems}
+
+        {/* <CartItem
+          image={{ src: Naruto2, name: "Naruto2" }}
+          title="NARUTO"
+          price=" SGD69.90"
+        />
+        <CartItem
+          image={{ src: Neji1, name: "Neji1" }}
+          title="NEJI"
+          price="SGD69.90"
+        />
+        <CartItem
+          image={{ src: HP1, name: "HP1" }}
+          title="HARRY POTTER"
+          price="SGD69.90"
+        /> */}
+
+        <div className="basis-1"> {cartItemComponents} </div>
 
         <div
           class="
