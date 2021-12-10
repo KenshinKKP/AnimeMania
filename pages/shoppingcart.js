@@ -4,8 +4,11 @@ import cartbanner from "../public/cartbanner.jpg";
 import styles from "../styles/Home.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useContext } from "react";
+import { CartContext } from "../context/cart";
 
 export default function ShoppingCart() {
+  const { addToCart, cartItems } = useContext(CartContext);
   return (
     <div className={styles.container}>
       <Head>
@@ -33,6 +36,7 @@ export default function ShoppingCart() {
             objectFit="cover"
           />
         </div>
+        {cartItems}
         <div class="grid grid-cols-5 space-y-6 space-x-4 ">
           <div class="flex flex-wrap content-center">
             <h1 class="text-2xl font-serif text-center">Images</h1>
