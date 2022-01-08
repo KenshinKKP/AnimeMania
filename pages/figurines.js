@@ -44,6 +44,7 @@ function FigurinesProduct(props) {
   const imageComponents = props.images.map(function (image) {
     return <Image src={image.src} alt={image.name} />;
   });
+
   return (
     <div className={props.direction}>
       <div className="w-auto p-10 flex flex-row">{imageComponents}</div>
@@ -104,23 +105,6 @@ export default function Figurines() {
         <h1 className="rounded-full border-2 border-black text-3xl font-bold font-serif text-center w-auto p-10">
           Figurines
         </h1>
-
-        {/* <CartItem
-          image={{ src: Naruto2, name: "Naruto2" }}
-          title="NARUTO"
-          price=" SGD69.90"
-        />
-        <CartItem
-          image={{ src: Neji1, name: "Neji1" }}
-          title="NEJI"
-          price="SGD69.90"
-        />
-        <CartItem
-          image={{ src: HP1, name: "HP1" }}
-          title="HARRY POTTER"
-          price="SGD69.90"
-        /> */}
-
         <div className="basis-1"> {cartItemComponents} </div>
 
         <div
@@ -181,12 +165,9 @@ export default function Figurines() {
               },
             ]}
             header="NARUTO - NEJI HYUGA"
-            productText={`From the popular anime series "Naruto Shippuden" comes a fully articulated Nendoroid action figure of
-                        Neji Hyuga!He comes with three face plates including a standard expression, a combat expression from
-                        when he activates his Byakugan and a composed smiling expression!
-
-                        The gifting box includes, full 1/9 scale figurine with interchangable face
-                        plates, weapons and an illustrated sheet.`}
+            productText={
+              "From the popular anime series 'Naruto Shippuden' comes a fully articulated Nendoroid action figure of Neji Hyuga! He comes with three face plates including a standard expression, a combat expression from when he activates his Byakugan and a composed smiling expression!The gifting box includes, full 1/9 scale figurine with interchangable face plates, weapons and an illustrated sheet."
+            }
             productPrice="SGD 69.90"
             addToCart={addToCart}
           />
